@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+  <META HTTP-EQUIV="Expires" CONTENT="0">
+  <link rel="icon" href="/DataV/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/8.0.7/swiper-bundle.min.css">
+  </link>
+  <script src="https://cdn.staticfile.org/Swiper/8.0.7/swiper-bundle.min.js"></script>
+  <script src="/DataV/cdn/vue/3.2.47/vue.global.min.js"></script>
+  <title>JNPF数据大屏</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body,
+    html,
+    #app {
+      height: 100%;
+    }
+
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    .swiper,
+    .swiper-wrapper,
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide iframe {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    function GetQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return unescape(r[2]); return null;
+    }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" v-for="(item,index) in list" :key="index">
+          <iframe :src="`./view.html?id=${item}&token=${token}&isDev=${isDev}`" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+  <script>
+    var app = Vue.createApp({
+      data() {
+        return {
+          id: GetQueryString('id'),
+          token: GetQueryString('token'),
+          isDev: GetQueryString('isDev'),
+          list: [],
+        }
+      },
+      created() {
+        this.list = this.id.split(',')
+      },
+      mounted() {
+        new Swiper('.swiper', {
+          loop: true,
+          autoplay: true,
+          delay: 3000,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }
+        })
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

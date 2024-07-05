@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/loading.css">
+  <link rel="stylesheet" href="/cdn/iconfont/iconfont.css">
+  <link rel="stylesheet" href="/cdn/animate/3.5.1/animate.css">
+  <script src="/components.js"></script>
+  <script src="/config.js"></script>
+  <script src="https://cdn.staticfile.org/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+  <script src="https://cdn.staticfile.org/xlsx/0.10.0/xlsx.full.min.js"></script>
+  <script src="https://cdn.staticfile.org/jszip/3.7.1/jszip.min.js"></script>
+  <script src="/cdn/html2canvas/html2canvas.min.js"></script>
+  <script src="/cdn/echarts/5.4.0/echarts.min.js"></script>
+  <script src="/cdn/echarts-wordcloud.min.js"></script>
+  <script src="/cdn/echarts-gl.min.js"></script>
+  <style>
+    html,
+    body,
+    #app {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+    #loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99999;
+      background-color: #151a26;
+    }
+    #loader-wrapper .loader-box {
+      position: fixed;
+      left: calc(50% - 250px);
+      top: calc(50% - 100px);
+      margin: 0 auto;
+      width: 500px;
+      height: 200px;
+      text-align: center;
+      vertical-align: center;
+      font-weight: bold;
+      color: #87888E;
+      font-size: 35px;
+    }
+    #loader-wrapper .loader-box>span {
+      opacity: 0.4;
+      display: inline-block;
+      animation: bouncingLoader 1s infinite alternate;
+    }
+    #loader-wrapper .loader-box>span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+    #loader-wrapper .loader-box>span:nth-child(3) {
+      animation-delay: 0.15s;
+    }
+    #loader-wrapper .loader-box>span:nth-child(4) {
+      animation-delay: 0.2s;
+    }
+    #loader-wrapper .loader-box>span:nth-child(5) {
+      animation-delay: 0.25s;
+    }
+    #loader-wrapper .loader-box>span:nth-child(6) {
+      animation-delay: 0.3s;
+    }
+    #loader-wrapper .loader-box>span:nth-child(7) {
+      animation-delay: 0.35s;
+    }
+    #loader-wrapper .loader-box>span:nth-child(8) {
+      animation-delay: 0.4s;
+    }
+    @keyframes bouncingLoader {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(25px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    #loader-wrapper .load_title {
+      font-weight: bold;
+      z-index: 1002;
+      position: absolute;
+      top: 50%;
+      margin-top: 15px;
+      color: #87888E;
+      font-size: 18px;
+      width: 100%;
+      height: 30px;
+      text-align: center;
+      opacity: 0.4;
+      line-height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="loader-wrapper">
+      <div class="loader-box">
+        <span>JNPF</span>
+        <span>智</span>
+        <span>慧</span>
+        <span>可</span>
+        <span>视</span>
+        <span>化</span>
+        <span>大</span>
+        <span>屏</span>
+      </div>
+      <div class="load_title">加载中…</div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
